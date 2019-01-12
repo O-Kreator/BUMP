@@ -1,3 +1,7 @@
+import React from 'react';
+import styled from 'styled-components';
+import { VerticallyCenter } from '../../../util/Center';
+
 const Wrap = styled.div`
   ${VerticallyCenter}
   margin-right: 72px;
@@ -22,7 +26,7 @@ const Number = styled.span`
 export default function LowerNumbers(props: { numbers: number[] }) {
   return (
     <Wrap>
-      {numbers.map(num => (
+      {props.numbers.map(num => (
         <Number key={num}>{num}</Number>
       ))}
     </Wrap>

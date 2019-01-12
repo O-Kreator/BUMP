@@ -14,4 +14,8 @@ body {
 button, input {
   outline: none;
 }
+
+input {
+  font-family: inherit;
+}
 `;
