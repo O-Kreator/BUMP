@@ -24,15 +24,17 @@ const TopWrap = styled.div`
 const Level = styled.div`
   font-weight: 500;
   font-size: 1.5em;
+  line-height: 1.5rem;
   letter-spacing: 0.5em;
   padding-left: 0.5em;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: ${identityColor};
 `;
 
 const Time = styled.div`
   font-weight: 900;
-  font-size: 2em;
+  font-size: 2rem;
+  line-height: 2rem;
   margin-bottom: 16px;
   color: ${identityColor};
 `;
@@ -40,8 +42,9 @@ const Time = styled.div`
 const Message = styled.div`
   font-weight: 500;
   font-size: 1.5rem;
+  line-height: 1.5rem;
   margin-top: 16px;
-  margin-bottom: 54px;
+  margin-bottom: 52px;
 `;
 
 const LastAnswerIndicator = styled.div<{ showOnLeft: boolean }>`

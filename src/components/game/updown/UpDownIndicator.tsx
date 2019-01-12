@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as ArrowBigUpSvg } from '../../../assets/arrow_big_up.svg';
-import { ReactComponent as ArrowBigDownSvg } from '../../../assets/arrow_big_down.svg';
+import { ReactComponent as ArrowBigUpSvg } from '../../../assets/updown-arrow_big_up.svg';
+import { ReactComponent as ArrowBigDownSvg } from '../../../assets/updown-arrow_big_down.svg';
 
 const ArrowUp = styled(ArrowBigUpSvg)`
   position: absolute;

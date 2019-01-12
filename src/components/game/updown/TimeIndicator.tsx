@@ -7,12 +7,12 @@ const StripeBox = styled.div`
   background-image: linear-gradient(
     135deg,
     ${identityColor} 25%,
-    #ffffff 25%,
-    #ffffff 50%,
+    rgba(40, 220, 160, 0) 25%,
+    rgba(40, 220, 160, 0) 50%,
     ${identityColor} 50%,
     ${identityColor} 75%,
-    #ffffff 75%,
-    #ffffff 100%
+    rgba(40, 220, 160, 0) 75%,
+    rgba(40, 220, 160, 0) 100%
   );
   background-size: 22.63px 22.63px;
   background-position: center center;

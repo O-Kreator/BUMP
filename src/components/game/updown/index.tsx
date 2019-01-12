@@ -1,28 +1,37 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
 import {
   Center,
   HorizontallyCenter,
   VerticallyCenter
 } from '../../util/Center';
-import { ReactComponent as InputButtonIcon } from '../../../assets/input_button.svg';
+
+import GameBase from '../GameBase';
 import LowerNumbers from './numbers/LowerNumbers';
 import HigherNumbers from './numbers/HigherNumbers';
-import { identityColor } from '../../../constants';
-import TimeIndicator from './TimeIndicator';
-import Indicator from './Indicator';
-import GameBase from '../GameBase';
 
-const Background = styled.div``;
+import Indicator from './Indicator';
+import TimeIndicator from './TimeIndicator';
+
+import { identityColor } from '../../../constants';
+import Background from './Background';
+import { ReactComponent as InputButtonIcon } from '../../../assets/input_button.svg';
+
+
+
 
 const UnknownAnswer = styled.div`
   z-index: 10;
+
   font-size: 4.5rem;
   font-weight: 700;
+  
   width: 96px;
   height: 96px;
-  ${Center}
   line-height: 92px;
+
+  ${Center}
   text-align: center;
   background: white;
 `;
@@ -46,6 +55,7 @@ const NumberInput = styled.input`
 
   border: none;
   border-bottom: 4px black solid;
+  background: none;
 
   -moz-appearance: textfield;
 
@@ -86,6 +96,7 @@ export default function UpDownGame() {
 
   return (
     <GameBase title="001 - UP AND DOWN">
+      <Background></Background>
       <TimeIndicator currentTime={currentTime} maxTime={maxTime} />
       <UnknownAnswer>?</UnknownAnswer>
 
