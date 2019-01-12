@@ -38,18 +38,29 @@ const UnknownAnswer = styled.div`
 
 const NumberInputWrap = styled.div`
   ${HorizontallyCenter}
+  transition: .2s;
+  
   width: 144px;
-  bottom: 48px;
+
+  @media screen and (min-width: 768px) and (min-height: 576px) {
+    bottom: 48px;
+  }
+
+  @media screen and (max-width: 767px), screen and (max-height: 575px) {
+    bottom: 18px;
+  }
+  
 `;
 
 const NumberInput = styled.input`
   z-index: 30;
+  transition: .2s;
 
   font-weight: 500;
   font-size: 1.5rem;
   text-align: center;
 
-  width: 144px;
+  width: 100%;
   height: 32px;
   line-height: 28px;
 
@@ -64,11 +75,20 @@ const NumberInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+
+  @media screen and (max-width: 375px), screen and (max-height: 568px) {
+    font-size: 1rem;
+    height: 24px;
+    border-bottom: 2px black solid;
+  }
 `;
 
 const NumberButton = styled.button`
+  z-index: 30;  
+  transition: .2s;
+
   position: absolute;
-  z-index: 30;
+  
   width: 32px;
   background-color: transparent;
   border: none;
