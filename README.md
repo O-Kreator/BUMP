@@ -29,7 +29,7 @@ Beautiful and Useless Mini-game Production
 
  * **Doro-nyong / 도로뇽** - *Designing, and Learning TypeScript, React, not PHP.* - [Doro-nyong](https://github.com/Doro-nyong)
  * **Ranol** - *I know React* - [RanolP](https://github.com/RanolP)
- * **Alex4386** - *Have a plan to destroy humanity with ML, I am learning React and TS* - [Alex4386](https://github.com/Alex4386) 
+ * **Alex4386** - *Have a plan to destroy humanity with ML, JK. I am learning React and TS* - [Alex4386](https://github.com/Alex4386) 
  
 ## Contributing
 
