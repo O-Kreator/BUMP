@@ -34,6 +34,14 @@ const UnknownAnswer = styled.div`
   ${Center}
   text-align: center;
   background: white;
+
+  transition: .2s;
+
+  @media screen and (max-width: 375px), screen and (max-height: 568px) {
+    font-size: 2rem;
+    width: 48px; height: 48px;
+    line-height: 44px;
+  }
 `;
 
 const NumberInputWrap = styled.div`
@@ -96,6 +104,18 @@ const NumberButton = styled.button`
   bottom: 4px;
 `;
 
+const InputButtonIconStyled = styled(InputButtonIcon)`
+  position: relative;
+  width: 24px; height: 24px;
+  transition: .2s;
+
+  @media screen and (max-width: 375px), screen and (max-height: 568px) {
+    width: 16px; height: 16px;
+    bottom: -1px;
+  }
+`;
+
+
 export default function UpDownGame() {
   const [currentTime, setCurrentTime] = React.useState(20);
   const [maxTime, setMaxTime] = React.useState(20);
@@ -128,7 +148,7 @@ export default function UpDownGame() {
       <NumberInputWrap>
         <NumberInput type="number" min={0} max={100} />
         <NumberButton>
-          <InputButtonIcon width="24px" height="24px" />
+          <InputButtonIconStyled />
         </NumberButton>
       </NumberInputWrap>
     </GameBase>

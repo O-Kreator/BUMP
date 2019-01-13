@@ -63,10 +63,10 @@ export default function Background() {
     return (
         <>
           <BackgroundLeftWrapper>
-              <BackgroundLeft></BackgroundLeft>
+              <BackgroundLeft />
           </BackgroundLeftWrapper>
           <BackgroundRightWrapper>
-              <BackgroundRight></BackgroundRight>
+              <BackgroundRight />
           </BackgroundRightWrapper>
         </>
     );
