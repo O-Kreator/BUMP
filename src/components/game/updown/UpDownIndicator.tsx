@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as ArrowUpSvg } from '../../../assets/updown-arrow_up.svg';
 import { ReactComponent as ArrowDownSvg } from '../../../assets/updown-arrow_down.svg';
+import { IndicatorType } from './indicatorType';
 
 const ArrowUp = styled(ArrowUpSvg)`
   position: absolute;
@@ -10,7 +11,10 @@ const ArrowUp = styled(ArrowUpSvg)`
   width: 110px;
   height: 115px;
 
-  transition: .2s;
+  transition: 0.2s;
+
+  user-drag: none; 
+  user-select: none;
 
   @media screen and (min-width: 768px) and (min-height: 576px) {
     margin-top: -154px;
@@ -25,7 +29,7 @@ const ArrowUp = styled(ArrowUpSvg)`
   @media screen and (max-width: 375px), screen and (max-height: 568px) {
     width: 50px;
     height: 58px;
-    
+
     margin-top: -86px;
     margin-left: -108px;
 
@@ -43,6 +47,9 @@ const ArrowDown = styled(ArrowDownSvg)`
   height: 115px;
 
   transition: .2s;
+
+  user-drag: none; 
+  user-select: none;
 
   @media screen and (min-width: 768px) and (min-height: 576px) {
     margin-bottom: -154px;
@@ -66,6 +73,10 @@ const ArrowDown = styled(ArrowDownSvg)`
     }
 `;
 
-export default function UpDownIndicator(props: { up: boolean }) {
-  return props.up ? <ArrowUp /> : <ArrowDown />;
+export default function UpDownIndicator(props: { type: IndicatorType }) {
+  return props.type === IndicatorType.Down ? (
+    <ArrowUp />
+  ) : props.type === IndicatorType.Up ? (
+    <ArrowDown />
+  ) : null;
 }

@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { Center, VerticallyCenter } from '../../util/Center';
 import { identityColor } from '../../../constants';
 import UpDownIndicator from './UpDownIndicator';
+import { IndicatorType } from './indicatorType';
 
 const Stick = styled.div`
-  width: 4px; height: 288px;
+  width: 4px;
+  height: 288px;
   background-color: ${identityColor};
-  transition: .2s;
+  transition: 0.2s;
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
     height: 168px;
@@ -35,14 +37,19 @@ const Level = styled.div`
   font-size: 1.5em;
   letter-spacing: 0.5em;
 
+  text-wrap: no-wrap;
+
   line-height: 1.5rem;
-  
+
   padding-left: 0.5em;
   margin-bottom: 12px;
-  
+
   color: ${identityColor};
 
-  transition: .2s;
+  transition: 0.2s;
+
+  user-drag: none; 
+  user-select: none;
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
     font-size: 1rem;
@@ -55,12 +62,15 @@ const Time = styled.div`
   font-weight: 900;
   font-size: 2rem;
   line-height: 2rem;
-  
+
   margin-bottom: 16px;
-  
+
   color: ${identityColor};
 
-  transition: .2s;
+  transition: 0.2s;
+
+  user-drag: none; 
+  user-select: none;
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
     font-size: 1.5rem;
@@ -78,17 +88,20 @@ const Message = styled.div`
   font-size: 1.5rem;
 
   line-height: 1.5rem;
-  
-  margin-top: 16px;
-  margin-bottom: 52px;
 
-  transition: .2s;
+  margin-top: 16px;
+  margin-bottom: 44px;
+
+  transition: 0.2s;
+
+  user-drag: none; 
+  user-select: none;
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
     font-size: 1rem;
     line-height: 1rem;
-    margin-top: 12px;
-    margin-bottom: 32px;
+    margin-top: 18px;
+    margin-bottom: 36px;
   }
 
   @media screen and (max-width: 375px), screen and (max-height: 568px) {
@@ -97,16 +110,19 @@ const Message = styled.div`
   }
 `;
 
-const LastAnswerIndicator = styled.div<{ showOnLeft: boolean }>`
+const LastAnswerIndicator = styled.div<{ type: IndicatorType }>`
   ${VerticallyCenter}
   z-index: -1;
-  
+
   width: calc(50% - 48px);
   height: 144px;
-  
+
   background-color: ${identityColor};
-  
-  transition: .2s;
+
+  transition: 0.2s;
+
+  user-drag: none; 
+  user-select: none;
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
     height: 132px;
@@ -116,25 +132,22 @@ const LastAnswerIndicator = styled.div<{ showOnLeft: boolean }>`
     height: 80px;
   }
 
-  ${({ showOnLeft }) =>
-    showOnLeft
-      ? `
-        right: 50%;
-      `
-      : `
-        left: 50%;
-      `}
+  ${({ type }) =>
+    type === IndicatorType.Down
+      ? 'right: 50%;'
+      : type === IndicatorType.Up
+      ? 'left: 50%;'
+      : 'display: none;'}
 `;
 
-
-export default function Indicator(props: {
+export function Indicator(props: {
   level: number;
   currentTime: number;
-  up: boolean;
+  type: IndicatorType;
 }) {
   return (
     <>
-      <UpDownIndicator up={props.up} />
+      <UpDownIndicator type={props.type} />
 
       <CenterWrap>
         <TopWrap>
@@ -142,10 +155,18 @@ export default function Indicator(props: {
           <Time>{props.currentTime.toFixed(1)}</Time>
         </TopWrap>
         <Stick />
-        <Message>{props.up ? 'Bigger!' : 'Smaller!'}</Message>
+        <Message>
+          {props.type === IndicatorType.Down
+            ? 'Bigger!'
+            : props.type === IndicatorType.Up
+            ? 'Smaller!'
+            : props.type === IndicatorType.Correct
+            ? 'Correct!'
+            : '　'}
+        </Message>
       </CenterWrap>
 
-      <LastAnswerIndicator showOnLeft={!props.up} />
+      <LastAnswerIndicator type={props.type} />
     </>
   );
 }

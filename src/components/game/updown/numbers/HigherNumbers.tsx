@@ -16,7 +16,7 @@ const Wrap = styled.div`
   }
 `;
 
-const Number = styled.span`
+const Number = styled.span<{ underlined: boolean }>`
   position: relative;
 
   font-size: 1.5rem;
@@ -24,6 +24,9 @@ const Number = styled.span`
   margin-left: 36px;
 
   transition: .2s;
+
+  user-drag: none; 
+  user-select: none;
   
   &:first-child {
     margin-left: 0;
@@ -49,13 +52,15 @@ const Number = styled.span`
       bottom: 3px;
     }
   }
+
+  ${({underlined}) => underlined && 'text-decoration: underline;'}
 `;
 
-export default function LowerNumbers(props: { numbers: number[] }) {
+export default function LowerNumbers(props: { lastInput?: number, numbers: number[] }) {
   return (
     <Wrap>
-      {props.numbers.map(num => (
-        <Number key={num}>{num}</Number>
+      {props.numbers.map((number, index) => (
+        <Number underlined={index === props.lastInput} key={index}>{number}</Number>
       ))}
     </Wrap>
   );

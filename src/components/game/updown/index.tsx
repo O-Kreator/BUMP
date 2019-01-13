@@ -11,22 +11,23 @@ import GameBase from '../GameBase';
 import LowerNumbers from './numbers/LowerNumbers';
 import HigherNumbers from './numbers/HigherNumbers';
 
-import Indicator from './Indicator';
+import { Indicator } from './Indicator';
+import { IndicatorType } from './indicatorType';
 import TimeIndicator from './TimeIndicator';
+
+import NumberInput from './NumberInput';
 
 import { identityColor } from '../../../constants';
 import Background from './Background';
-import { ReactComponent as InputButtonIcon } from '../../../assets/input_button.svg';
-
-
-
 
 const UnknownAnswer = styled.div`
   z-index: 10;
+  user-drag: none;
+  user-select: none;
 
   font-size: 4.5rem;
   font-weight: 700;
-  
+
   width: 96px;
   height: 96px;
   line-height: 92px;
@@ -35,122 +36,118 @@ const UnknownAnswer = styled.div`
   text-align: center;
   background: white;
 
-  transition: .2s;
+  transition: 0.2s;
 
   @media screen and (max-width: 375px), screen and (max-height: 568px) {
     font-size: 2rem;
-    width: 48px; height: 48px;
+    width: 48px;
+    height: 48px;
     line-height: 44px;
   }
 `;
 
-const NumberInputWrap = styled.div`
-  ${HorizontallyCenter}
-  transition: .2s;
-  
-  width: 144px;
-
-  @media screen and (min-width: 768px) and (min-height: 576px) {
-    bottom: 48px;
-  }
-
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    bottom: 18px;
-  }
-  
-`;
-
-const NumberInput = styled.input`
-  z-index: 30;
-  transition: .2s;
-
-  font-weight: 500;
-  font-size: 1.5rem;
-  text-align: center;
-
-  width: 100%;
-  height: 32px;
-  line-height: 28px;
-
-  border: none;
-  border-bottom: 4px black solid;
-  background: none;
-
-  -moz-appearance: textfield;
-
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    font-size: 1rem;
-    height: 24px;
-    border-bottom: 2px black solid;
-  }
-`;
-
-const NumberButton = styled.button`
-  z-index: 30;  
-  transition: .2s;
-
-  position: absolute;
-  
-  width: 32px;
-  background-color: transparent;
-  border: none;
-  right: 0;
-  bottom: 4px;
-`;
-
-const InputButtonIconStyled = styled(InputButtonIcon)`
-  position: relative;
-  width: 24px; height: 24px;
-  transition: .2s;
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    width: 16px; height: 16px;
-    bottom: -1px;
-  }
-`;
-
-
 export default function UpDownGame() {
-  const [currentTime, setCurrentTime] = React.useState(20);
-  const [maxTime, setMaxTime] = React.useState(20);
+  const max = 100;
+  const min = 1;
+  function createAnswer() {
+    return Math.round(Math.random() * (max - min)) + min;
+  }
+  const [answer, setAnswer] = React.useState(createAnswer());
+  const [isCorrect, setCorrect] = React.useState(false);
+  const [currentTime, setCurrentTime] = React.useState(35);
+  const [maxTime, setMaxTime] = React.useState(35);
+  const [answers, setAnswers] = React.useState<number[]>([]);
+  const [lastAnswer, setLastAnswer] = React.useState<number | null>(null);
+  const [level, setLevel] = React.useState(1);
 
   React.useEffect(
     () => {
-      if (currentTime > 0) {
+      if (currentTime > 0 && !isCorrect) {
         const id = setInterval(() => {
-          setCurrentTime(prev => +(prev - 0.1).toFixed(1));
+          setCurrentTime(prev => Math.max(0, +(prev - 0.1).toFixed(1)));
         }, 100);
 
         return () => clearInterval(id);
       }
       return;
     },
-    [currentTime]
+    [currentTime, isCorrect]
   );
 
+  /**
+   * when number was submitted, handle the number submit
+   */
+  function onNumberSubmit(input: number) {
+    if (answers.includes(input)) {
+      return;
+    }
+    if (isCorrect) {
+      return;
+    }
+    if (input === answer) {
+      setCorrect(true);
+      setTimeout(() => {
+        setCorrect(false);
+        setLevel(prev => prev + 1);
+        setAnswers([]);
+        setLastAnswer(null);
+        const newTime = maxTime * 0.8;
+        setCurrentTime(newTime);
+        setMaxTime(newTime);
+        setAnswer(createAnswer());
+      }, 3000);
+    } else {
+      setCurrentTime(time => Math.max(0, time - 1));
+    }
+    setLastAnswer(input);
+    setAnswers(before => before.concat(input));
+  }
+
+  const lowerNumbers = answers
+    .filter(value => value < answer)
+    .sort((a, b) => a - b);
+  const higherNumbers = answers
+    .filter(value => value > answer)
+    .sort((a, b) => a - b);
+
   return (
-    <GameBase title="001 - UP AND DOWN">
-      <Background></Background>
+    <GameBase id={1} title="UP AND DOWN">
+      <Background />
+      <UnknownAnswer>{isCorrect ? answer : '?'}</UnknownAnswer>
+
       <TimeIndicator currentTime={currentTime} maxTime={maxTime} />
-      <UnknownAnswer>?</UnknownAnswer>
+      <Indicator
+        level={level}
+        currentTime={currentTime}
+        type={
+          !lastAnswer
+            ? IndicatorType.None
+            : lastAnswer > answer
+            ? IndicatorType.Up
+            : lastAnswer < answer
+            ? IndicatorType.Down
+            : IndicatorType.Correct
+        }
+      />
 
-      <Indicator level={7} currentTime={currentTime} up={true} />
+      <LowerNumbers
+        lastInput={
+          lastAnswer !== null && lastAnswer < answer
+            ? lowerNumbers.indexOf(lastAnswer)
+            : undefined
+        }
+        numbers={lowerNumbers}
+      />
+      <HigherNumbers
+        lastInput={
+          lastAnswer !== null && lastAnswer > answer
+            ? higherNumbers.indexOf(lastAnswer)
+            : undefined
+        }
+        numbers={higherNumbers}
+      />
 
-      <LowerNumbers numbers={[12, 18, 24, 36, 48]} />
-      <HigherNumbers numbers={[60, 72]} />
-
-      <NumberInputWrap>
-        <NumberInput type="number" min={0} max={100} />
-        <NumberButton>
-          <InputButtonIconStyled />
-        </NumberButton>
-      </NumberInputWrap>
+      <NumberInput min={min} max={max} onNumberSubmit={onNumberSubmit} />
     </GameBase>
   );
 }

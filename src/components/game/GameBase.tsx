@@ -4,25 +4,30 @@ import { ReactComponent as LogoSvg } from '../../assets/logo.svg';
 
 const Logo = styled(LogoSvg)`
   position: absolute;
-  transition: .2s;
+  transition: 0.2s;
+
+  user-drag: none;
+  user-select: none;
 
   @media screen and (min-width: 768px) and (min-height: 576px) {
-    left: 48px; top: 48px;
+    left: 48px;
+    top: 48px;
   }
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    left: 18px; top: 18px;
+    left: 18px;
+    top: 18px;
   }
 
   @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    width: 32px; height: 32px;
+    width: 32px;
+    height: 32px;
   }
-
 `;
 
 const GameTitle = styled.p`
   position: absolute;
-  transition: .2s;
+  transition: 0.2s;
   margin: 0;
 
   writing-mode: vertical-rl;
@@ -33,12 +38,17 @@ const GameTitle = styled.p`
   line-height: 12px;
   letter-spacing: 0.5em;
 
+  user-drag: none;
+  user-select: none;
+
   @media screen and (min-width: 768px) and (min-height: 576px) {
-    right: 48px; top: 48px;
+    right: 48px;
+    top: 48px;
   }
 
   @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    right: 18px; top: 18px;
+    right: 18px;
+    top: 18px;
   }
 
   @media screen and (max-width: 375px), screen and (max-height: 568px) {
@@ -46,17 +56,22 @@ const GameTitle = styled.p`
     line-height: 9px;
     letter-spacing: 0.3em;
   }
-  
 `;
 
 export default function GameBase(props: {
+  id: number;
   title: string;
   children: React.ReactNode[];
 }) {
+  React.useEffect(() => {
+    document.title = 'BUMP - ' + props.title;
+  });
   return (
     <>
       <Logo width="64px" height="64px" />
-      <GameTitle>{props.title}</GameTitle>
+      <GameTitle>
+        {props.id.toString().padStart(3, '0') + ' - ' + props.title}
+      </GameTitle>
       {props.children}
     </>
   );
