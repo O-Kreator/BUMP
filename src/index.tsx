@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import App from "./App";
+
 import { Reset } from "./components/style/Reset";
 import { Font } from "./components/style/Font";
+
 import UpDownGame from "./components/game/updown";
+
 
 ReactDOM.render(
   <>
