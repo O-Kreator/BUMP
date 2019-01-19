@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { VerticallyCenter } from '../../../util/Center';
 
+import mediaQuery from '../../../util/MediaQuery';
+
 const Wrap = styled.div`
   ${VerticallyCenter}
   left: 50%;
@@ -11,16 +13,17 @@ const Wrap = styled.div`
 
   transition: .2s;
 
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    margin-left: 42px;
-  }
+  ${mediaQuery(
+    `none`,
+    `none`,
+    `margin-left: 42px;`
+  )}
 `;
 
 const Number = styled.span<{ underlined: boolean }>`
   position: relative;
 
   font-size: 1.5rem;
-  line-height: 2.5rem;
   margin-left: 36px;
 
   transition: .2s;
@@ -39,9 +42,10 @@ const Number = styled.span<{ underlined: boolean }>`
     bottom: 2px;
   }
 
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    font-size: 1rem;
-    line-height: 2rem;
+  ${mediaQuery(
+    `none`,
+    `none`,
+    `font-size: 1rem;
     margin-left: 18px;
 
     &:first-child {
@@ -50,8 +54,8 @@ const Number = styled.span<{ underlined: boolean }>`
 
     &:not(:first-child) {
       bottom: 3px;
-    }
-  }
+    }`
+  )}
 
   ${({underlined}) => underlined && 'text-decoration: underline;'}
 `;

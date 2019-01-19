@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BackgroundPattern from '../../../assets/updown-background.svg';
+import BackgroundPattern from '../../../../assets/updown-background.svg';
 
 const BackgroundLeftWrapper = styled.div`
 z-index: -10;

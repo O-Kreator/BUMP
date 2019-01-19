@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as ArrowUpSvg } from '../../../assets/updown-arrow_up.svg';
-import { ReactComponent as ArrowDownSvg } from '../../../assets/updown-arrow_down.svg';
+import { ReactComponent as ArrowUpSvg } from '../../../../assets/updown-arrow_up.svg';
+import { ReactComponent as ArrowDownSvg } from '../../../../assets/updown-arrow_down.svg';
 import { IndicatorType } from './indicatorType';
+
+import mediaQuery from '../../../util/MediaQuery';
 
 const ArrowUp = styled(ArrowUpSvg)`
   position: absolute;
@@ -16,18 +18,12 @@ const ArrowUp = styled(ArrowUpSvg)`
   user-drag: none; 
   user-select: none;
 
-  @media screen and (min-width: 768px) and (min-height: 576px) {
-    margin-top: -154px;
-    margin-left: -164px;
-  }
-
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    margin-top: -143px;
-    margin-left: -164px;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    width: 50px;
+  ${mediaQuery(
+    `margin-top: -154px;
+    margin-left: -164px;`,
+    `margin-top: -143px;
+    margin-left: -164px;`,
+    `width: 50px;
     height: 58px;
 
     margin-top: -86px;
@@ -35,8 +31,8 @@ const ArrowUp = styled(ArrowUpSvg)`
 
     #letters {
       display: none;
-    }
-  }
+    }`
+  )}
 `;
 
 const ArrowDown = styled(ArrowDownSvg)`
@@ -51,18 +47,12 @@ const ArrowDown = styled(ArrowDownSvg)`
   user-drag: none; 
   user-select: none;
 
-  @media screen and (min-width: 768px) and (min-height: 576px) {
-    margin-bottom: -154px;
-    margin-right: -164px;
-  }
-
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    margin-bottom: -143px;
-    margin-right: -164px;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    width: 50px;
+  ${mediaQuery(
+    `margin-bottom: -154px;
+    margin-right: -164px;`,
+    `margin-bottom: -143px;
+    margin-right: -164px;`,
+    `width: 50px;
     height: 58px;
     
     margin-bottom: -86px;
@@ -70,7 +60,8 @@ const ArrowDown = styled(ArrowDownSvg)`
 
     #letters {
       display: none;
-    }
+    }`
+  )}
 `;
 
 export default function UpDownIndicator(props: { type: IndicatorType }) {

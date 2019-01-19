@@ -1,9 +1,11 @@
 import React, { KeyboardEvent } from 'react'; //뀨
 import styled from 'styled-components';
 
-import { HorizontallyCenter } from '../../util/Center';
+import { HorizontallyCenter } from '../../../util/Center';
 
-import { ReactComponent as InputButtonIcon } from '../../../assets/input_button.svg';
+import { ReactComponent as InputButtonIcon } from '../../../../assets/input_button.svg';
+
+import mediaQuery from '../../../util/MediaQuery';
 
 const InputWrap = styled.div`
   ${HorizontallyCenter}
@@ -44,11 +46,13 @@ const Input = styled.input`
     margin: 0;
   }
 
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    font-size: 1rem;
+  ${mediaQuery(
+    `none`,
+    `none`,
+    `font-size: 1rem;
     height: 24px;
-    border-bottom: 2px black solid;
-  }
+    border-bottom: 2px black solid;`
+  )}
 `;
 
 const Button = styled.button`
@@ -70,14 +74,18 @@ const InputButtonIconStyled = styled(InputButtonIcon)`
   height: 24px;
   transition: 0.2s;
 
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    width: 16px;
+
+  ${mediaQuery(
+    ``,
+    ``,
+    `width: 16px;
     height: 16px;
-    bottom: -1px;
-  }
+    bottom: -1px;`
+  )}
 `;
 
 const Number = /^[0-9]+$/;
+
 
 export default function NumberInput(props: {
   min: number;

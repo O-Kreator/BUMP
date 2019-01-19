@@ -10,15 +10,18 @@ import {
 import GameBase from '../GameBase';
 import LowerNumbers from './numbers/LowerNumbers';
 import HigherNumbers from './numbers/HigherNumbers';
+import { Config } from './components/Config'
 
-import { Indicator } from './Indicator';
-import { IndicatorType } from './indicatorType';
-import TimeIndicator from './TimeIndicator';
+import { Indicator } from './components/Indicator';
+import { IndicatorType } from './components/indicatorType';
+import TimeIndicator from './components/TimeIndicator';
 
-import NumberInput from './NumberInput';
+import NumberInput from './components/NumberInput';
 
 import { identityColor } from '../../../constants';
-import Background from './Background';
+import Background from './components/Background';
+
+import mediaQuery from '../../util/MediaQuery';
 
 const UnknownAnswer = styled.div`
   z-index: 10;
@@ -38,12 +41,15 @@ const UnknownAnswer = styled.div`
 
   transition: 0.2s;
 
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    font-size: 2rem;
+  ${mediaQuery(
+    `none`,
+    `none`,
+    `font-size: 2rem;
     width: 48px;
     height: 48px;
-    line-height: 44px;
-  }
+    line-height: 44px;`
+  )}
+
 `;
 
 export default function UpDownGame() {
@@ -54,11 +60,12 @@ export default function UpDownGame() {
   }
   const [answer, setAnswer] = React.useState(createAnswer());
   const [isCorrect, setCorrect] = React.useState(false);
-  const [currentTime, setCurrentTime] = React.useState(35);
-  const [maxTime, setMaxTime] = React.useState(35);
+  const [currentTime, setCurrentTime] = React.useState(Config.firstLevelSecond);
+  const [maxTime, setMaxTime] = React.useState(Config.firstLevelSecond);
   const [answers, setAnswers] = React.useState<number[]>([]);
   const [lastAnswer, setLastAnswer] = React.useState<number | null>(null);
   const [level, setLevel] = React.useState(1);
+
 
   React.useEffect(
     () => {
@@ -68,6 +75,16 @@ export default function UpDownGame() {
         }, 100);
 
         return () => clearInterval(id);
+      } else if (currentTime <= 0) {
+        setTimeout(() => {
+          setCurrentTime(+(0).toFixed(1));
+          setLevel(1);
+          setAnswers([]);
+          setLastAnswer(null);
+          setCurrentTime(Config.firstLevelSecond);
+          setMaxTime(Config.firstLevelSecond);
+          setAnswer(createAnswer());
+        }, 3000);
       }
       return;
     },
@@ -75,7 +92,7 @@ export default function UpDownGame() {
   );
 
   /**
-   * when number was submitted, handle the number submit
+   * When number was submitted, handle the number submit.
    */
   function onNumberSubmit(input: number) {
     if (answers.includes(input)) {
@@ -84,14 +101,14 @@ export default function UpDownGame() {
     if (isCorrect) {
       return;
     }
-    if (input === answer) {
+    if (input === answer && currentTime > 0) {
       setCorrect(true);
       setTimeout(() => {
         setCorrect(false);
         setLevel(prev => prev + 1);
         setAnswers([]);
         setLastAnswer(null);
-        const newTime = maxTime * 0.8;
+        const newTime = maxTime * Config.levelByLevelMultiplier;
         setCurrentTime(newTime);
         setMaxTime(newTime);
         setAnswer(createAnswer());
@@ -110,6 +127,7 @@ export default function UpDownGame() {
     .filter(value => value > answer)
     .sort((a, b) => a - b);
 
+    
   return (
     <GameBase id={1} title="UP AND DOWN">
       <Background />
@@ -120,7 +138,9 @@ export default function UpDownGame() {
         level={level}
         currentTime={currentTime}
         type={
-          !lastAnswer
+          currentTime <= 0
+            ? IndicatorType.TimeOver
+            : !lastAnswer
             ? IndicatorType.None
             : lastAnswer > answer
             ? IndicatorType.Up

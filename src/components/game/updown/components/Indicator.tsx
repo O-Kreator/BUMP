@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Center, VerticallyCenter } from '../../util/Center';
-import { identityColor } from '../../../constants';
+import { Center, VerticallyCenter } from '../../../util/Center';
+import { identityColor } from '../../../../constants';
 import UpDownIndicator from './UpDownIndicator';
 import { IndicatorType } from './indicatorType';
+
+import mediaQuery from '../../../util/MediaQuery';
 
 const Stick = styled.div`
   width: 4px;
@@ -11,14 +13,12 @@ const Stick = styled.div`
   background-color: ${identityColor};
   transition: 0.2s;
 
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    height: 168px;
-    visibility: hidden;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    height: 112px;
-  }
+  ${mediaQuery(
+    `none`,
+    `height: 168px;
+    visibility: hidden;`,
+    `height: 112px;`
+  )}
 `;
 
 const CenterWrap = styled.div`
@@ -51,11 +51,13 @@ const Level = styled.div`
   user-drag: none; 
   user-select: none;
 
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    font-size: 1rem;
+  ${mediaQuery(
+    `none`,
+    `font-size: 1rem;
     line-height: 1rem;
-    margin-bottom: 6px;
-  }
+    margin-bottom: 6px;`,
+    `none`
+  )}
 `;
 
 const Time = styled.div`
@@ -72,15 +74,13 @@ const Time = styled.div`
   user-drag: none; 
   user-select: none;
 
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    font-size: 1.5rem;
+  ${mediaQuery(
+    `none`,
+    `font-size: 1.5rem;
     line-height: 1.5rem;
-    margin-bottom: 12px;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    display: none;
-  }
+    margin-bottom: 12px;`,
+    `display: none;`
+  )}
 `;
 
 const Message = styled.div`
@@ -97,17 +97,15 @@ const Message = styled.div`
   user-drag: none; 
   user-select: none;
 
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    font-size: 1rem;
+  ${mediaQuery(
+    `none`,
+    `font-size: 1rem;
     line-height: 1rem;
     margin-top: 18px;
-    margin-bottom: 36px;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    visibility: hidden;
-    margin-bottom: 6px;
-  }
+    margin-bottom: 36px;`,
+    `visibility: hidden;
+    margin-bottom: 6px;`
+  )}
 `;
 
 const LastAnswerIndicator = styled.div<{ type: IndicatorType }>`
@@ -124,13 +122,11 @@ const LastAnswerIndicator = styled.div<{ type: IndicatorType }>`
   user-drag: none; 
   user-select: none;
 
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    height: 132px;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    height: 80px;
-  }
+  ${mediaQuery(
+    `none`,
+    `height: 132px;`,
+    `height: 80px;`
+  )}
 
   ${({ type }) =>
     type === IndicatorType.Down
@@ -139,6 +135,7 @@ const LastAnswerIndicator = styled.div<{ type: IndicatorType }>`
       ? 'left: 50%;'
       : 'display: none;'}
 `;
+
 
 export function Indicator(props: {
   level: number;
@@ -162,7 +159,10 @@ export function Indicator(props: {
             ? 'Smaller!'
             : props.type === IndicatorType.Correct
             ? 'Correct!'
-            : '　'}
+            : props.type === IndicatorType.TimeOver
+            ? 'Time Over!'
+            : '  '
+          }
         </Message>
       </CenterWrap>
 

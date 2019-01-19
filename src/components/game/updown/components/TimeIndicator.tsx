@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { identityColor } from '../../../constants';
-import { Center } from '../../util/Center';
+import { identityColor } from '../../../../constants';
+import { Center } from '../../../util/Center';
+
+import mediaQuery from '../../../util/MediaQuery';
 
 const StripeBox = styled.div`
   z-index: -2;
@@ -23,17 +25,11 @@ const StripeBox = styled.div`
   background-size: 22.63px 22.63px;
   background-position: center center;
 
-  @media screen and (min-width: 768px) and (min-height: 576px) {
-    height: 192px;
-  }
-
-  @media screen and (max-width: 767px), screen and (max-height: 575px) {
-    height: 168px;
-  }
-
-  @media screen and (max-width: 375px), screen and (max-height: 568px) {
-    height: 112px;
-  }
+  ${mediaQuery(
+    `height: 192px;`,
+    `height: 168px;`,
+    `height: 112px;`
+  )}
 `;
 
 export default function TimeIndicator(props: {

@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "10"
+install:
+  - npm install
+script: 
+  - npm run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $FOR_PUBLISHING_BUMP
+  keep-history: true
+  target-branch: gh-pages
+  local-dir: build
+  on:
+    branch: master
