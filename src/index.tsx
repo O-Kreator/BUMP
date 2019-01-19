@@ -16,10 +16,10 @@ ReactDOM.render(
   <>
     <Font />
     <Reset />
-    <Router>
+    <Router basename={"/BUMP"}>
       <Switch>
-        <Route path="/" exact={true} component={App} />
-        <Route path="/updown" exact={true} component={UpDownGame} />
+        <Route path={`${process.env.PUBLIC_URL}/`} exact={true} component={App} />
+        <Route path={`${process.env.PUBLIC_URL}/updown`} exact={true} component={UpDownGame} />
       </Switch>
     </Router>
   </>,
