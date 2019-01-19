@@ -69,5 +69,5 @@ export default function mediaQuery(option: {
     ${option.cssDesktopHD ? styles.cssDesktopHD(option.cssDesktopHD) : ''}
     ${option.cssDesktop ? styles.cssDesktop(option.cssDesktop) : ''}
     ${option.cssMobile ? styles.cssMobile(option.cssMobile) : ''}
-    `;
+  `;
 }
