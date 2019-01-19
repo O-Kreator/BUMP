@@ -6,6 +6,7 @@
 ![commit activity, keep on commit'in](https://img.shields.io/github/commit-activity/y/Doro-nyong/BUMP.svg)
 ![Contribu-thors](https://img.shields.io/github/contributors/Doro-nyong/BUMP.svg)
 ![I am a star, a great big shiny star! yaaaaaaaaaaaay](https://img.shields.io/github/stars/Doro-nyong/BUMP.svg?label=Stars&style=social)
+![TravisCI, to the rescue!](https://travis-ci.com/Doro-nyong/BUMP.svg?branch=master)
 
 # BUMP
 
