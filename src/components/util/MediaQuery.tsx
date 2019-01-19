@@ -25,43 +25,43 @@ const createMediaQuery = (
 `;
 
 /**
- * 스타일 리스트들
+ * Style Objects
  */
 const styles = {
   /**
-   * 데스크탑 HD이상 지정 함수
+   * Desktops better than HD systems
    */
   cssDesktopHD: (style: string) =>
     createMediaQuery(true, 'min', 768, 'min', 576)(style),
   /**
-   * HD미만 데스크탑 지정 함수
+   * for Tablets or less resolution Desktops
    */
   cssDesktop: (style: string) =>
     createMediaQuery(false, 'max', 767, 'max', 575)(style),
   /**
-   * Mobile 데스크탑 지정 함수
+   * for Mobile
    */
   cssMobile: (style: string) =>
     createMediaQuery(false, 'max', 375, 'max', 568)(style)
 };
 
 /**
- * 미디어 쿼리를 생성합니다.
+ * create media queries
  *
- * @params {Object} 옵션
- * @return {FlattenSimpleInterpolation} 생성된 CSS
+ * @params {Object} option css mediaQueries
+ * @return {FlattenSimpleInterpolation} CSS Outputs
  */
 export default function mediaQuery(option: {
   /**
-   * cssDesktopHD HD 이상의 스크린에서 표시할 내용 (가로 768px 이상, 세로 576px 이상)
+   * CSS for Desktops better than HD systems
    */
   cssDesktopHD?: string;
   /**
-   * cssDesktop HD 미만의 데스크탑 스크린에서 표시할 내용 (가로 767px 이하, 세로 575px 이하)
+   * CSS for Tablets or less resolution Desktops
    */
   cssDesktop?: string;
   /**
-   * cssMobile 모바일 스크린에서 표시할 내용 (가로 375px 이하, 세로 568px 이하)
+   * CSS for Mobile
    */
   cssMobile?: string;
 }) {
