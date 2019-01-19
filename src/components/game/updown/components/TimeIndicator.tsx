@@ -25,11 +25,11 @@ const StripeBox = styled.div`
   background-size: 22.63px 22.63px;
   background-position: center center;
 
-  ${mediaQuery(
-    `height: 192px;`,
-    `height: 168px;`,
-    `height: 112px;`
-  )}
+  ${mediaQuery({
+    cssDesktopHD: `height: 192px;`,
+    cssDesktop: `height: 168px;`,
+    cssMobile: `height: 112px;`
+  })}
 `;
 
 export default function TimeIndicator(props: {

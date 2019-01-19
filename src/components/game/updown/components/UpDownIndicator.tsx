@@ -18,12 +18,12 @@ const ArrowUp = styled(ArrowUpSvg)`
   user-drag: none; 
   user-select: none;
 
-  ${mediaQuery(
-    `margin-top: -154px;
+  ${mediaQuery({
+    cssDesktopHD: `margin-top: -154px;
     margin-left: -164px;`,
-    `margin-top: -143px;
+    cssDesktop: `margin-top: -143px;
     margin-left: -164px;`,
-    `width: 50px;
+    cssMobile: `width: 50px;
     height: 58px;
 
     margin-top: -86px;
@@ -32,7 +32,7 @@ const ArrowUp = styled(ArrowUpSvg)`
     #letters {
       display: none;
     }`
-  )}
+  })}
 `;
 
 const ArrowDown = styled(ArrowDownSvg)`
@@ -47,12 +47,12 @@ const ArrowDown = styled(ArrowDownSvg)`
   user-drag: none; 
   user-select: none;
 
-  ${mediaQuery(
-    `margin-bottom: -154px;
+  ${mediaQuery({
+    cssDesktopHD: `margin-bottom: -154px;
     margin-right: -164px;`,
-    `margin-bottom: -143px;
+    cssDesktop: `margin-bottom: -143px;
     margin-right: -164px;`,
-    `width: 50px;
+    cssMobile: `width: 50px;
     height: 58px;
     
     margin-bottom: -86px;
@@ -61,7 +61,7 @@ const ArrowDown = styled(ArrowDownSvg)`
     #letters {
       display: none;
     }`
-  )}
+  })}
 `;
 
 export default function UpDownIndicator(props: { type: IndicatorType }) {

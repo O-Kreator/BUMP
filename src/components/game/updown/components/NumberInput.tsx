@@ -46,13 +46,11 @@ const Input = styled.input`
     margin: 0;
   }
 
-  ${mediaQuery(
-    `none`,
-    `none`,
-    `font-size: 1rem;
+  ${mediaQuery({
+    cssMobile:`font-size: 1rem;
     height: 24px;
     border-bottom: 2px black solid;`
-  )}
+  })}
 `;
 
 const Button = styled.button`
@@ -75,13 +73,11 @@ const InputButtonIconStyled = styled(InputButtonIcon)`
   transition: 0.2s;
 
 
-  ${mediaQuery(
-    ``,
-    ``,
-    `width: 16px;
+  ${mediaQuery({
+    cssMobile:`width: 16px;
     height: 16px;
     bottom: -1px;`
-  )}
+  })}
 `;
 
 const Number = /^[0-9]+$/;

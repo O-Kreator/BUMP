@@ -14,9 +14,9 @@ const Wrap = styled.div`
   transition: .2s;
 
   ${mediaQuery(
-    `none`,
-    `none`,
-    `margin-right: 42px;`
+    {
+    cssMobile: `margin-right: 42px;`
+    }
   )}
 `;
 
@@ -42,10 +42,8 @@ const Number = styled.span<{ underlined: boolean }>`
     bottom: 3px;
   }
 
-  ${mediaQuery(
-    `none`,
-    `none`,
-    `font-size: 1rem;
+  ${mediaQuery({
+    cssMobile: `font-size: 1rem;
     margin-right: 18px;
 
     &:last-child {
@@ -55,7 +53,7 @@ const Number = styled.span<{ underlined: boolean }>`
     &:not(:last-child) {
       bottom: 3px;
     }`
-  )}
+  })}
   
   ${({underlined}) => underlined && 'text-decoration: underline;'}
 `;

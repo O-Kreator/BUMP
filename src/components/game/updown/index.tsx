@@ -41,14 +41,12 @@ const UnknownAnswer = styled.div`
 
   transition: 0.2s;
 
-  ${mediaQuery(
-    `none`,
-    `none`,
-    `font-size: 2rem;
+  ${mediaQuery({
+    cssMobile: `font-size: 2rem;
     width: 48px;
     height: 48px;
     line-height: 44px;`
-  )}
+  })}
 
 `;
 

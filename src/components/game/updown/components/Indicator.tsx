@@ -13,12 +13,11 @@ const Stick = styled.div`
   background-color: ${identityColor};
   transition: 0.2s;
 
-  ${mediaQuery(
-    `none`,
-    `height: 168px;
+  ${mediaQuery({
+    cssDesktop: `height: 168px;
     visibility: hidden;`,
-    `height: 112px;`
-  )}
+    cssMobile: `height: 112px;`
+  })}
 `;
 
 const CenterWrap = styled.div`
@@ -51,13 +50,11 @@ const Level = styled.div`
   user-drag: none; 
   user-select: none;
 
-  ${mediaQuery(
-    `none`,
-    `font-size: 1rem;
+  ${mediaQuery({
+    cssDesktop: `font-size: 1rem;
     line-height: 1rem;
     margin-bottom: 6px;`,
-    `none`
-  )}
+  })}
 `;
 
 const Time = styled.div`
@@ -74,13 +71,12 @@ const Time = styled.div`
   user-drag: none; 
   user-select: none;
 
-  ${mediaQuery(
-    `none`,
-    `font-size: 1.5rem;
+  ${mediaQuery({
+    cssDesktop: `font-size: 1.5rem;
     line-height: 1.5rem;
     margin-bottom: 12px;`,
-    `display: none;`
-  )}
+    cssMobile: `display: none;`
+  })}
 `;
 
 const Message = styled.div`
@@ -97,15 +93,14 @@ const Message = styled.div`
   user-drag: none; 
   user-select: none;
 
-  ${mediaQuery(
-    `none`,
-    `font-size: 1rem;
+  ${mediaQuery({
+    cssDesktop: `font-size: 1rem;
     line-height: 1rem;
     margin-top: 18px;
     margin-bottom: 36px;`,
-    `visibility: hidden;
+    cssMobile: `visibility: hidden;
     margin-bottom: 6px;`
-  )}
+  })}
 `;
 
 const LastAnswerIndicator = styled.div<{ type: IndicatorType }>`
@@ -122,11 +117,10 @@ const LastAnswerIndicator = styled.div<{ type: IndicatorType }>`
   user-drag: none; 
   user-select: none;
 
-  ${mediaQuery(
-    `none`,
-    `height: 132px;`,
-    `height: 80px;`
-  )}
+  ${mediaQuery({
+    cssDesktop: `height: 132px;`,
+    cssMobile: `height: 80px;`
+  })}
 
   ${({ type }) =>
     type === IndicatorType.Down
