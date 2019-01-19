@@ -1,6 +1,6 @@
 {
-  "main.js": "/BUMP/static/js/main.d8a9afe2.chunk.js",
-  "main.js.map": "/BUMP/static/js/main.d8a9afe2.chunk.js.map",
+  "main.js": "/BUMP/static/js/main.79bacaa9.chunk.js",
+  "main.js.map": "/BUMP/static/js/main.79bacaa9.chunk.js.map",
   "static/js/1.22d09654.chunk.js": "/BUMP/static/js/1.22d09654.chunk.js",
   "static/js/1.22d09654.chunk.js.map": "/BUMP/static/js/1.22d09654.chunk.js.map",
   "runtime~main.js": "/BUMP/static/js/runtime~main.8dd12600.js",
@@ -11,6 +11,6 @@
   "static/media/input_button.e75f7839.svg": "/BUMP/static/media/input_button.e75f7839.svg",
   "static/media/logo.90a49c48.svg": "/BUMP/static/media/logo.90a49c48.svg",
   "index.html": "/BUMP/index.html",
-  "precache-manifest.c818df74e8afcaabc964a9d4c27248a8.js": "/BUMP/precache-manifest.c818df74e8afcaabc964a9d4c27248a8.js",
+  "precache-manifest.208f7a2edf2ae1cf4344574cd712f5e8.js": "/BUMP/precache-manifest.208f7a2edf2ae1cf4344574cd712f5e8.js",
   "service-worker.js": "/BUMP/service-worker.js"
 }
