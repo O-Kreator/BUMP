@@ -24,15 +24,15 @@ self.__precacheManifest = [
     "url": "/BUMP/static/js/runtime~main.8dd12600.js"
   },
   {
-    "revision": "2e55fd25f106abed510e",
-    "url": "/BUMP/static/js/main.2e55fd25.chunk.js"
+    "revision": "ac2b08ef0babb08d27e8",
+    "url": "/BUMP/static/js/main.ac2b08ef.chunk.js"
   },
   {
     "revision": "22d0965464c1f0c9ae90",
     "url": "/BUMP/static/js/1.22d09654.chunk.js"
   },
   {
-    "revision": "d132ba0ddb2f9bb11c4fa8107f24d670",
+    "revision": "69e677c750162d983de4842435db5f78",
     "url": "/BUMP/index.html"
   }
 ];
