@@ -12,7 +12,7 @@ export default function App() {
       Learn React - RanolP with Doro-nyong
       <ul>
         <li>
-          <Link to={`${process.env.PUBLIC_URL}/updown`}>Up Down Game</Link>
+          <Link to={`/updown`}>Up Down Game</Link>
         </li>
       </ul>
     </AppWrap>
